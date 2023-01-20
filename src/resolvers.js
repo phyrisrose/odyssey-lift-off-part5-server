@@ -44,6 +44,18 @@ const resolvers = {
     modules: ({ id }, _, { dataSources }) => {
       return dataSources.trackAPI.getTrackModules(id);
     },
+
+    /**
+     * the parameter structure follows the same pattern as all resolvers
+     * The first one is parent, then args, context, and info
+     * length is available through the parent because of the resolver chain
+     * https://www.apollographql.com/docs/apollo-server/data/resolvers/#resolver-chains
+     */
+    durationInSeconds: ({ length }) => length,
+  },
+
+  Module: {
+    durationInSeconds: ({ length }) => length,
   },
 };
 
